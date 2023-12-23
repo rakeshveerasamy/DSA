@@ -1,3 +1,5 @@
+//Time Complexity - O(n)
+
 class Solution {
     public void moveZeroes(int[] nums) {
         if(nums.length == 1) return;
