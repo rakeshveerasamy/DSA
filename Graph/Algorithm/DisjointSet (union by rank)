@@ -1,0 +1,45 @@
+class DisjointSet {
+	private int vertices;
+	private List<Integer> rank;
+	private List<Integer> parent;
+
+	DisjointSet(int vertices) {
+		this.vertices = vertices;
+		this.rank = new ArrayList<>();
+		this.parent = new ArrayList<>();
+		init();
+	}
+
+	private void init() {
+		for (int i = 0; i < this.vertices; i++) {
+			this.rank.add(0);
+			this.parent.add(1);
+		}
+	}
+
+	private int findUltimateParent(int node) {
+		if (node == this.parent.get(node)) {
+			return node;
+		}
+		int uParent = findUltimateParent(node);
+		this.parent.set(node, uParent);
+		return uParent;
+	}
+
+	public void unionByRank(int u, int v) {
+		int uParent = findUltimateParent(u);
+		int vParent = findUltimateParent(v);
+		if (uParent == vParent)
+			return;
+		if (this.rank.get(uParent) < this.rank.get(vParent)) {
+			this.parent.set(uParent, vParent);
+		} else if (this.rank.get(uParent) > this.rank.get(vParent)) {
+			this.parent.set(vParent, uParent);
+		} else {
+			this.parent.set(vParent, uParent);
+			int rank = this.rank.get(uParent);
+			this.rank.set(uParent, rank + 1);
+		}
+	}
+
+}
