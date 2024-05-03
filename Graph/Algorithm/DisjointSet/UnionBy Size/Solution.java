@@ -21,7 +21,7 @@ private int findUltimateParent(int node){
 if(node == this.parent.get(node)){
 	return node;
 }	
-int uParent = findUltimateParent(node);
+int uParent = findUltimateParent(this.parent.get(node));
 this.parent.set(node,uParent);
 return uParent;
 }
