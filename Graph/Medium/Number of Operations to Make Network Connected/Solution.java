@@ -42,10 +42,10 @@ class Disjoinset {
 
 		if (this.size.get(uParent) < this.parent.get(vParent)) {
 			this.parent.set(uParent, vParent);
-			this.size.set(vParent, this.size.get(vParent) + 1);
+			this.size.set(vParent, this.size.get(vParent) + this.size.get(uParent));
 		} else {
 			this.parent.set(vParent, uParent);
-			this.size.set(uParent, this.size.get(uParent) + 1);
+			this.size.set(uParent, this.size.get(uParent) + this.size.get(vParent));
 
 		}
 	}
