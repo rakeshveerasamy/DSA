@@ -1,0 +1,33 @@
+struct FilesFolders {
+	vector<string> files;
+	vector<string> folders;
+}
+
+FilesFolders FindAllFilesAndFolders(path) {
+	// network call in google drive which fetches all files and folders inside this path.
+	return FilesFolders;
+}
+
+// Implement Search method which return any path which has sub_string in it.
+string Search(string path, string sub_string) {
+
+}
+
+Expectation: -> Implement this Search method and give time complexity according to network latency for google drive.
+Solution -> A recurrence and focus on Time Complexity.
+
+Follow up ->
+
+New method:
+void get_async(string path, callback_func…) {
+	// creates a new thread
+	// Calls callback_func after 100ms or whenever operation done.
+	callback_func(files, folders);
+	return;
+}
+
+-> Now implement Search using new method get_async() along with time_complexities.
+It was more of open ended problem and I had to ask various questions to get it cleared.
+
+I was able to code and explain follow up but he pointed out various syntax errors.
+I will share result here.
