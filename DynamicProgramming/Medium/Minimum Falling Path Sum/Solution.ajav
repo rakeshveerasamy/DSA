@@ -1,0 +1,54 @@
+class Solution {
+    public int minFallingPathSum(int[][] matrix) {
+        MinimumPath mp = new MinimumPath(matrix);
+        return mp.getResult();
+    }
+}
+class MinimumPath{
+    private int[][] matrix;
+    private int row;
+    private int col;
+    private int minPathSum;
+
+    MinimumPath(int[][] matrix){
+        this.matrix = matrix;
+        this.row = matrix.length;
+        this.col = matrix[0].length;
+        this.minPathSum = Integer.MAX_VALUE;
+        findMinPathSum();
+    }
+
+    private void findMinPathSum(){
+        int [] dp = new int[this.col];
+
+        for(int i=0;i<this.col;i++){
+            dp[i] = this.matrix[this.row-1][i];
+        }
+        int temp [] = new int[this.col];
+
+        for(int i=this.row-2;i>=0;i--){
+            for(int j =0;j<this.col;j++){
+                int minValue = dp[j];
+
+                if(j>0){
+                    minValue = Math.min(minValue,dp[j-1]);
+                }
+                if(j<this.col-1){
+                    minValue = Math.min(minValue,dp[j+1]);
+                }
+
+                temp[j] = minValue+this.matrix[i][j];
+            }
+            System.arraycopy(temp,0,dp,0,this.col);
+        }
+        
+        for(int i=0;i<this.col;i++){
+            this.minPathSum = Math.min(this.minPathSum, dp[i]);
+        }
+
+    }
+
+    public int getResult(){
+        return this.minPathSum;
+    }
+}
