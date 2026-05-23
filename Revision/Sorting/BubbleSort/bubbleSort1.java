@@ -31,7 +31,7 @@ class BubbleSort {
             }
 
             if (!swap) {
-                return;
+                break;
             }
         }
     }
